@@ -1,0 +1,363 @@
+### 1. Technology - Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Artificial intelligence improves efficiency in many industries.",
+  "accepted_answers": [
+    "AI enhances productivity across different sectors.",
+    "Artificial intelligence helps automate tasks and increase efficiency."
+  ]
+}
+
+### 2. Technology - Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Artificial intelligence is harmful and destroys jobs.",
+  "accepted_answers": [
+    "AI enhances productivity across different sectors.",
+    "Artificial intelligence helps automate tasks and increase efficiency."
+  ]
+}
+
+### 3. Environment - Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Recycling reduces pollution and saves resources.",
+  "accepted_answers": [
+    "Recycling is a key method to reduce waste and environmental damage.",
+    "It helps conserve natural resources and lowers pollution levels."
+  ]
+}
+
+### 4. Environment - Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Recycling does not help and wastes energy.",
+  "accepted_answers": [
+    "Recycling is a key method to reduce waste and environmental damage.",
+    "It helps conserve natural resources and lowers pollution levels."
+  ]
+}
+
+### 5. Food - Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Eating fruits and vegetables is healthy.",
+  "accepted_answers": [
+    "Fruits and vegetables provide essential nutrients and improve health.",
+    "A diet rich in vegetables and fruits supports overall wellness."
+  ]
+}
+
+### 6. Food - Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Eating  fruits is unhealthy.",
+  "accepted_answers": [
+    "Fruits and vegetables provide essential nutrients and improve health.",
+    "A diet rich in vegetables and fruits supports overall wellness."
+  ]
+}
+
+### 7. Sports - Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Regular exercise strengthens the body and mind.",
+  "accepted_answers": [
+    "Physical activity improves fitness and mental health.",
+    "Exercise is important for maintaining overall wellbeing."
+  ]
+}
+
+### 8. Sports - Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Sports are dangerous and harm your health.",
+  "accepted_answers": [
+    "Physical activity improves fitness and mental health.",
+    "Exercise is important for maintaining overall wellbeing."
+  ]
+}
+
+### 9. Persian Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "ورزش منظم باعث سلامتی بدن و ذهن می‌شود.",
+  "accepted_answers": [
+    "فعالیت بدنی باعث بهبود سلامتی و روحیه می‌شود.",
+    "ورزش برای حفظ سلامت کلی بدن ضروری است."
+  ]
+}
+
+### 10. Persian Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "ورزش مضر است و باعث آسیب می‌شود.",
+  "accepted_answers": [
+    "فعالیت بدنی باعث بهبود سلامتی و روحیه می‌شود.",
+    "ورزش برای حفظ سلامت کلی بدن ضروری است."
+  ]
+}
+
+### 1. Technology - Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Artificial intelligence improves efficiency in many industries.",
+  "accepted_answers": [
+    "AI enhances productivity across different sectors.",
+    "Artificial intelligence helps automate tasks and increase efficiency."
+  ]
+}
+
+### 2. Technology - Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Artificial intelligence is harmful and destroys jobs.",
+  "accepted_answers": [
+    "AI enhances productivity across different sectors.",
+    "Artificial intelligence helps automate tasks and increase efficiency."
+  ]
+}
+
+### 3. Environment - Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Recycling reduces pollution and saves resources.",
+  "accepted_answers": [
+    "Recycling is a key method to reduce waste and environmental damage.",
+    "It helps conserve natural resources and lowers pollution levels."
+  ]
+}
+
+### 4. Environment - Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Recycling does not help and wastes energy.",
+  "accepted_answers": [
+    "Recycling is a key method to reduce waste and environmental damage.",
+    "It helps conserve natural resources and lowers pollution levels."
+  ]
+}
+
+### 5. Food - Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Eating fruits and vegetables is healthy.",
+  "accepted_answers": [
+    "Fruits and vegetables provide essential nutrients and improve health.",
+    "A diet rich in vegetables and fruits supports overall wellness."
+  ]
+}
+
+### 6. Food - Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Eating too many fruits is unhealthy and causes problems.",
+  "accepted_answers": [
+    "Fruits and vegetables provide essential nutrients and improve health.",
+    "A diet rich in vegetables and fruits supports overall wellness."
+  ]
+}
+
+### 7. Sports - Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Regular exercise strengthens the body and mind.",
+  "accepted_answers": [
+    "Physical activity improves fitness and mental health.",
+    "Exercise is important for maintaining overall wellbeing."
+  ]
+}
+
+### 8. Sports - Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "Sports are dangerous and harm your health.",
+  "accepted_answers": [
+    "Physical activity improves fitness and mental health.",
+    "Exercise is important for maintaining overall wellbeing."
+  ]
+}
+
+### 9. Persian Positive
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "ورزش منظم باعث سلامتی بدن و ذهن می‌شود.",
+  "accepted_answers": [
+    "فعالیت بدنی باعث بهبود سلامتی و روحیه می‌شود.",
+    "ورزش برای حفظ سلامت کلی بدن ضروری است."
+  ]
+}
+
+### 10. Persian Negative
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "ورزش مضر است و باعث آسیب نمی‌شود.",
+  "accepted_answers": [
+    "فعالیت بدنی باعث بهبود سلامتی و روحیه می‌شود.",
+    "ورزش برای حفظ سلامت کلی بدن ضروری است."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "هوش مصنوعی می‌تواند بهره‌وری صنایع را افزایش دهد.",
+  "accepted_answers": [
+    "سیستم‌های هوشمند باعث کاهش خطاهای انسانی می‌شوند.",
+    "AI و هوش مصنوعی کارایی کسب‌وکارها را بالا می‌برد."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "سیستم‌های هوشمند باعث کاهش خطاهای انسانی می‌شوند.",
+  "accepted_answers": [
+    "هوش مصنوعی می‌تواند بهره‌وری صنایع را افزایش دهد.",
+    "AI و هوش مصنوعی کارایی کسب‌وکارها را بالا می‌برد."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "بازیافت زباله‌ها به کاهش آلودگی کمک می‌کند.",
+  "accepted_answers": [
+    "حفاظت از منابع طبیعی برای نسل‌های آینده ضروری است.",
+    "مدیریت صحیح زباله‌ها برای محیط زیست حیاتی است."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "حفاظت از منابع طبیعی برای نسل‌های آینده ضروری است.",
+  "accepted_answers": [
+    "بازیافت زباله‌ها به کاهش آلودگی کمک می‌کند.",
+    "مدیریت صحیح زباله‌ها برای محیط زیست حیاتی است."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "خوردن میوه و سبزیجات برای سلامت بدن مفید است.",
+  "accepted_answers": [
+    "مصرف زیاد قند باعث بیماری‌های مزمن می‌شود.",
+    "رژیم غذایی سالم شامل میوه و سبزیجات است."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "مصرف زیاد قند باعث بیماری‌های مزمن می‌شود.",
+  "accepted_answers": [
+    "خوردن میوه و سبزیجات برای سلامت بدن مفید است.",
+    "رژیم غذایی سالم شامل میوه و سبزیجات است."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "ورزش منظم باعث افزایش سلامت جسم و روح می‌شود.",
+  "accepted_answers": [
+    "تمرینات منظم جسم و روان را تقویت می‌کند.",
+    "فعالیت بدنی برای حفظ سلامت ضروری است."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "فعالیت بدنی برای حفظ سلامت ضروری نیست.",
+  "accepted_answers": [
+    "ورزش منظم باعث افزایش سلامت جسم و روح می‌شود.",
+    "فعالیت بدنی برای حفظ سلامت ضروری است."
+  ]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "مطالعه روزانه دانش‌آموزان باعث پیشرفت تحصیلی می‌شود.",
+  "accepted_answers": [
+    "یادگیری منظم دانش‌آموزان موفقیت تحصیلی را افزایش می‌دهد.",
+    "مطالعه مستمر باعث ارتقای دانش و مهارت‌ها می‌شود."
+  ],
+  "keywords": ["پیشرفت تحصیل","نظم"]
+}
+
+###
+POST http://127.0.0.1:8020/check_answer
+Content-Type: application/json
+
+{
+  "student_answer": "یادگیری چیز های جدید  خیلی خوبه.",
+  "accepted_answers": [
+    "مطالعه روزانه دانش‌آموزان باعث پیشرفت تحصیلی می‌شود.",
+    "یادگیری مستمر مهارت‌ها باعث موفقیت شغلی می‌شود.",
+    " چیزهای جدید مناسبه"
+  ]
+}
+
+
