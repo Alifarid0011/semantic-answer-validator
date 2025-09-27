@@ -4,12 +4,19 @@ The Semantic Answer Validator is a lightweight API that checks whether a student
 It uses modern semantic similarity models to go beyond exact keyword matching, supporting both English and Persian inputs.
 
 🚀 Features
+
 ✅ Semantic validation instead of strict keyword matching.
+
 ✅ Multi-language support (English + Persian).
+
 ✅ Handles both positive and negative statements correctly.
+
 ✅ Supports optional keywords for stricter validation.
+
 ✅ RESTful API with FastAPI.
+
 ✅ Ready-to-use test cases for evaluation.
+
 📦 Installation
 # Clone repository
 git clone https://github.com/AliFarid0011/semantic-answer-validator.git
@@ -24,12 +31,13 @@ venv\Scripts\activate      # On Windows
 pip install -r requirements.txt
 
 ▶️ Run the API
-uvicorn semantic_api:app --reload --port 8020
+uvicorn app:app --reload --port 8020
 
 🔗 Example Request
+
+```
 POST http://127.0.0.1:8020/check_answer
 Content-Type: application/json
-
 {
   "student_answer": "Artificial intelligence improves efficiency in many industries.",
   "accepted_answers": [
@@ -37,12 +45,14 @@ Content-Type: application/json
     "Artificial intelligence helps automate tasks and increase efficiency."
   ]
 }
-
+---------
 Example Response
 {
   "is_correct": true,
   "similarity_score": 0.86
 }
+```
+
 
 📖 Use Cases
 🏫 Education → Evaluate free-text answers in quizzes/exams.
