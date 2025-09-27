@@ -211,7 +211,8 @@ Content-Type: application/json
   "accepted_answers": [
     "Physical activity improves fitness and mental health.",
     "Exercise is important for maintaining overall wellbeing."
-  ]
+  ],
+  "keywords": ["Exercise","activity"]
 }
 
 ### 9. Persian Positive

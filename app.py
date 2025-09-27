@@ -21,23 +21,24 @@ hf_logging.set_verbosity_error()  # hide transformers noisy warnings
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Paths / names
-LaBSE_PICKLE = "LaBSE.pkl"                     # where LaBSE will be saved/loaded
+LaBSE_PICKLE = "LaBSE.pkl"  # where LaBSE will be saved/loaded
 NLI_MODEL_NAME = "joeddav/xlm-roberta-large-xnli"
-NLI_CACHE_DIR = "xlm_roberta_xnli_cache"       # transformers cache dir for NLI
+NLI_CACHE_DIR = "xlm_roberta_xnli_cache"  # transformers cache dir for NLI
 
 # NLI thresholds
-NLI_CONTRADICTION_THRESHOLD = 0.65   # per-answer contradiction probability considered "contradiction"
-NLI_CONTRADICTION_PROP = 0.5         # proportion of accepted answers contradicted -> reject
-NLI_ENTAILMENT_PROP = 0.5            # proportion entailment -> accept
-NLI_ENTAILMENT_AVG_PROB = 0.70       # avg entailment prob threshold to force accept
+NLI_CONTRADICTION_THRESHOLD = 0.65  # per-answer contradiction probability considered "contradiction"
+NLI_CONTRADICTION_PROP = 0.5  # proportion of accepted answers contradicted -> reject
+NLI_ENTAILMENT_PROP = 0.5  # proportion entailment -> accept
+NLI_ENTAILMENT_AVG_PROB = 0.70  # avg entailment prob threshold to force accept
 
 # similarity / scores
 SIMILARITY_ACCEPT_THRESHOLD = 0.66
-KEYWORD_PENALTY = 0.25               # milder penalty
+KEYWORD_PENALTY = 0.25  # milder penalty
 NEGATION_PENALTY = 0.45
 
 # ------------------ UTIL: text normalization & fuzzy keyword match ------------------
 PUNCT_TABLE = str.maketrans({p: " " for p in (string.punctuation + "،؟؛«»“”…—ـ«»ٔ؟")})
+
 
 def normalize_text(text: str) -> str:
     if not text:
@@ -46,6 +47,7 @@ def normalize_text(text: str) -> str:
     txt = txt.translate(PUNCT_TABLE)
     txt = re.sub(r"\s+", " ", txt)  # collapse spaces
     return txt.strip()
+
 
 def fuzzy_keyword_match(student_text: str, keyword: str, ratio_threshold: float = 0.70) -> bool:
     s = normalize_text(student_text)
@@ -66,6 +68,7 @@ def fuzzy_keyword_match(student_text: str, keyword: str, ratio_threshold: float 
             return True
     return False
 
+
 # ------------------ NEGATION WORDS ------------------
 NEGATION_WORDS = [
     # english
@@ -78,10 +81,11 @@ NEGATION_WORDS = [
     "نمی", "نمید", "نمیک", "نمیخ",
     "نخواهد", "نخواهم", "نخواهند",
     "نه", "ندارد", "نداریم", "ندانست", "نکرده",
-    "نا", "بی","بدترین"
-    "افتضحاح","بد","بدتر"
+    "نا", "بی", "بدترین"
+                "افتضحاح", "بد", "بدتر"
 
 ]
+
 
 def contains_negation(text: str) -> bool:
     if not text:
@@ -92,6 +96,7 @@ def contains_negation(text: str) -> bool:
             return True
     return False
 
+
 # ------------------ LOAD / CACHE MODELS ------------------
 # LaBSE
 if Path(LaBSE_PICKLE).exists():
@@ -99,11 +104,10 @@ if Path(LaBSE_PICKLE).exists():
         sbert_model = pickle.load(f)
     print(f"✅ Loaded LaBSE from {LaBSE_PICKLE}")
 else:
-    print("⏳ Downloading LaBSE (LaBSE)... this may take a while.")
     sbert_model = SentenceTransformer("sentence-transformers/LaBSE")
     with open(LaBSE_PICKLE, "wb") as f:
         pickle.dump(sbert_model, f)
-    print(f"✅ LaBSE downloaded and saved to {LaBSE_PICKLE}")
+        print(f"✅ LaBSE Loaded {LaBSE_PICKLE}")
 
 # NLI
 os.makedirs(NLI_CACHE_DIR, exist_ok=True)
@@ -116,6 +120,7 @@ label2id = {v.lower(): int(k) for k, v in nli_model.config.id2label.items()}
 
 # ------------------ CACHE for embeddings (optional speedup) ------------------
 _EMBED_CACHE: Dict[str, torch.Tensor] = {}
+
 
 def cached_encode(sentences: List[str]):
     """
@@ -144,6 +149,7 @@ def cached_encode(sentences: List[str]):
     # ensure all tensors on DEVICE
     results = [r.to(DEVICE) if isinstance(r, torch.Tensor) else torch.tensor([], device=DEVICE) for r in results]
     return results
+
 
 # ------------------ NLI helpers ------------------
 def nli_summary(student: str, accepted_answers: List[str]):
@@ -189,19 +195,21 @@ def nli_summary(student: str, accepted_answers: List[str]):
         "n": n
     }
 
+
 # ------------------ CORE scoring functions ------------------
 def get_sbert_similarity(student_answer: str, accepted_answers: List[str]) -> float:
     if not accepted_answers:
         return 0.0
     texts = [student_answer] + accepted_answers
     embs = cached_encode(texts)  # list of tensors on DEVICE
-    student_emb = embs[0].unsqueeze(0)           # shape (1, dim)
+    student_emb = embs[0].unsqueeze(0)  # shape (1, dim)
     accepted_embs = torch.stack([e for e in embs[1:]], dim=0)  # shape (n, dim)
     # cosine similarity along dim=1 between student_emb repeated and each accepted_emb
     sims = F.cosine_similarity(student_emb.repeat(accepted_embs.size(0), 1), accepted_embs, dim=1)
     # sims are in [-1,1], keep as float in [0,1] approx (Roberta embeddings typically positive)
     sims = sims.cpu().tolist()
     return float(max(sims))
+
 
 def keywords_present(student_answer: str, keywords: List[str]) -> bool:
     if not keywords:
@@ -211,11 +219,13 @@ def keywords_present(student_answer: str, keywords: List[str]) -> bool:
             return True
     return False
 
+
 def accepted_answers_are_negative(accepted_answers: List[str]) -> bool:
     if not accepted_answers:
         return False
     neg_count = sum(1 for a in accepted_answers if contains_negation(a))
     return (neg_count / len(accepted_answers)) > 0.5
+
 
 def compute_final_score(student_answer: str, accepted_answers: List[str], keywords: List[str]) -> float:
     # Normalize inputs quickly
@@ -253,20 +263,24 @@ def compute_final_score(student_answer: str, accepted_answers: List[str], keywor
 
     return max(0.0, score)
 
+
 # ------------------ FASTAPI ------------------
 app = FastAPI(title="Semantic Answer Checker v5",
               description="LaBSE (LaBSE) + XLM-RoBERTa NLI optimized; fuzzy keywords; negation; local caching.",
               version="5.0")
+
 
 class CheckRequest(BaseModel):
     student_answer: str
     accepted_answers: List[str]
     keywords: List[str] = []
 
+
 class CheckResponse(BaseModel):
     similarity_score: float
     accepted: bool
     details: dict = {}
+
 
 @app.post("/check_answer", response_model=CheckResponse)
 def check_answer_endpoint(data: CheckRequest):
@@ -284,8 +298,10 @@ def check_answer_endpoint(data: CheckRequest):
         "keywords_present": keywords_present(data.student_answer, data.keywords) if data.keywords else True,
         "student_negation": contains_negation(data.student_answer),
     }
-    return CheckResponse(similarity_score=round(score,4), accepted=accepted, details=details)
+    return CheckResponse(similarity_score=round(score, 4), accepted=accepted, details=details)
+
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run("app:app", host="0.0.0.0", port=8020, reload=True)
