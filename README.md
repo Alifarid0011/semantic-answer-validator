@@ -55,19 +55,33 @@ Example Response
 
 
 📖 Use Cases
+
 🏫 Education → Evaluate free-text answers in quizzes/exams.
+
 🌍 Multilingual applications → Supports semantic similarity in Persian & English.
+
 📊 Surveys / Feedback analysis → Classify open-ended responses by meaning.
+
 🛠 Tech Stack
+
 Python 3.10+
+
 FastAPI (API framework)
+
 Sentence-Transformers (semantic embeddings)
+
 Uvicorn (ASGI server)
+
 📌 Roadmap
+
  Add support for more languages.
+
  Improve contradiction detection.
+
  Add optional scoring (0–100).
+
  Dockerize for production use.
+
 📜 License
 
 This project is licensed under the MIT License.
