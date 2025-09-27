@@ -95,15 +95,10 @@ def contains_negation(text: str) -> bool:
 # ------------------ LOAD / CACHE MODELS ------------------
 # LaBSE
 if Path(LaBSE_PICKLE).exists():
-    with open(LaBSE_PICKLE, "rb") as f:
-        sbert_model = pickle.load(f)
-    print(f"✅ Loaded LaBSE from {LaBSE_PICKLE}")
-else:
-    print("⏳ Downloading LaBSE (LaBSE)... this may take a while.")
     sbert_model = SentenceTransformer("sentence-transformers/LaBSE")
     with open(LaBSE_PICKLE, "wb") as f:
         pickle.dump(sbert_model, f)
-    print(f"✅ LaBSE downloaded and saved to {LaBSE_PICKLE}")
+        print(f"✅ LaBSE Loaded {LaBSE_PICKLE}")
 
 # NLI
 os.makedirs(NLI_CACHE_DIR, exist_ok=True)
